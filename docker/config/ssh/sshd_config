@@ -9,8 +9,6 @@ PasswordAuthentication yes
 
 AllowUsers *
 
-Ciphers 3des-cbc,aes128-cbc
-
 LogLevel QUIET
 
 MaxAuthTries 100
