@@ -1,0 +1,18 @@
+# This is an evil sshd config, maybe consider updating it :p
+Port 22
+
+PermitRootLogin yes
+
+PermitEmptyPasswords yes
+
+PasswordAuthentication yes
+
+AllowUsers *
+
+Ciphers 3des-cbc,aes128-cbc
+
+LogLevel QUIET
+
+MaxAuthTries 100
+
+
