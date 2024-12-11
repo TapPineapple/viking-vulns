@@ -1,7 +1,7 @@
 FROM ubuntu:20.04
 ARG S6_OVERLAY_VERSION=3.2.0.2
 
-RUN apt-get update && apt-get install -y nginx xz-utils openssh-server \
+RUN apt-get update && apt-get install -y openssh-server \
     wget cron vim nano python sudo
 
 # Install s6
