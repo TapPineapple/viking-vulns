@@ -1,8 +1,29 @@
 #wip
-version: "3.8"
 services:
-  app:
-    build:
-      context: ./docker/.
+  openvpn:
+    cap_add:
+      - NET_ADMIN
+    image: kylemanna/openvpn
+    container_name: openvpn
     ports:
-      - "22:22"
+      - 1194:1194/udp
+    volumes:
+      - ./ovpn-data-storage:/etc/openvpn
+    networks:
+      viking-vuln-network:
+        ipv4_address: 192.168.69.200
+    restart: unless-stopped
+    
+
+  app:
+    image: viking-vulns #run docker build script
+    networks:
+      viking-vuln-network:
+        ipv4_address: 192.168.69.10
+
+networks:
+  viking-vuln-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.69.0/24 
