@@ -20,8 +20,6 @@ services:
     networks:
       viking-vuln-network:
         ipv4_address: 192.168.69.10
-    ports:
-      - 2222:22/tcp
 
 networks:
   viking-vuln-network:
