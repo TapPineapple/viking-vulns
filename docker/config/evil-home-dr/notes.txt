@@ -1,0 +1,7 @@
+I can't believe those fools put such a silly password for the root account!! 
+
+Hahahahaha! I'm in!
+
+There's so many vulns in this stupid 'server'.
+
+I might try and establish persistance somehow... I wanna keep access to this brilliant server.
