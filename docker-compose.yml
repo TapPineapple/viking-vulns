@@ -1,4 +1,3 @@
-#wip
 services:
   openvpn:
     cap_add:
@@ -16,7 +15,7 @@ services:
     
 
   app:
-    image: viking-vulns #run docker build script
+    image: viking-vulns #our custom image (can be built with the script)
     networks:
       viking-vuln-network:
         ipv4_address: 192.168.69.10
