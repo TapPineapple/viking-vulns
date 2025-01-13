@@ -12,3 +12,6 @@ docker compose run --rm openvpn ovpn_initpki
 #Generate the config file for the clients (no pw)
 docker compose run --rm openvpn easyrsa build-client-full $CLIENTNAME nopass
 docker compose run --rm openvpn ovpn_getclient $CLIENTNAME > $CLIENTNAME.ovpn
+
+echo "add line \"duplicate-cn\" to openvpn conf"
+echo "add line \"tun-mtu 1200\" to openvpn conf"

@@ -26,7 +26,7 @@ COPY ./config/ssh/sshd_config /etc/ssh/sshd_config
 
 # Create the service for sshd
 RUN mkdir -p /etc/services.d/sshd && \
-    echo '#!/bin/sh\nexec /usr/sbin/sshd -D' > /etc/services.d/sshd/run && \
+    echo '#!/bin/sh\nexec /usr/sbin/sshd -D -f /etc/ssh/sshd_config' > /etc/services.d/sshd/run && \
     chmod +x /etc/services.d/sshd/run
 
 #Everything below will feature flaws that the players will have to correct.
