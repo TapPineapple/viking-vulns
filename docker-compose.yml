@@ -14,12 +14,35 @@ services:
     restart: unless-stopped
     
 
-  app:
+  app0:
     image: viking-vulns #our custom image (can be built with the script)
     networks:
       viking-vuln-network:
         ipv4_address: 192.168.69.10
 
+  app1:
+    image: viking-vulns #our custom image (can be built with the script)
+    networks:
+      viking-vuln-network:
+        ipv4_address: 192.168.69.11
+
+  app2:
+    image: viking-vulns #our custom image (can be built with the script)
+    networks:
+      viking-vuln-network:
+        ipv4_address: 192.168.69.12
+
+  app3:
+    image: viking-vulns #our custom image (can be built with the script)
+    networks:
+      viking-vuln-network:
+        ipv4_address: 192.168.69.13
+
+  app4:
+    image: viking-vulns #our custom image (can be built with the script)
+    networks:
+      viking-vuln-network:
+        ipv4_address: 192.168.69.14
 networks:
   viking-vuln-network:
     driver: bridge

@@ -29,6 +29,18 @@ RUN mkdir -p /etc/services.d/sshd && \
     echo '#!/bin/sh\nexec /usr/sbin/sshd -D -f /etc/ssh/sshd_config' > /etc/services.d/sshd/run && \
     chmod +x /etc/services.d/sshd/run
 
+# Custom welcome message for blueteam user
+RUN echo 'echo " "' >> /home/blueteam/.bashrc && \
+    echo 'echo "======================================================="' >> /home/blueteam/.bashrc && \
+    echo 'echo "=               Viking Vulns Challenge               ="' >> /home/blueteam/.bashrc && \
+    echo 'echo "=                   by Adin                          ="' >> /home/blueteam/.bashrc && \
+    echo 'echo "======================================================="' >> /home/blueteam/.bashrc && \
+    echo 'echo " "' >> /home/blueteam/.bashrc && \
+    echo 'echo "Welcome, Blueteam! Your mission is to secure this system."' >> /home/blueteam/.bashrc && \
+    echo 'echo "Investigate thoroughly and fix all vulnerabilities!"' >> /home/blueteam/.bashrc && \
+    echo 'echo " "' >> /home/blueteam/.bashrc
+
+
 #Everything below will feature flaws that the players will have to correct.
 
 COPY ./config/evil-home-dr/* /home/evil-viking/
